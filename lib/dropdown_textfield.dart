@@ -59,6 +59,7 @@ class DropDownTextField extends StatefulWidget {
       this.initialValue,
       required this.dropDownList,
       this.padding,
+      this.suffixIcons,
       this.textStyle,
       this.onChanged,
       this.validator,
@@ -114,6 +115,7 @@ class DropDownTextField extends StatefulWidget {
       this.padding,
       this.textStyle,
       this.onChanged,
+      this.suffixIcons,
       this.align,
       this.validator,
       this.isEnabled = true,
@@ -170,6 +172,7 @@ class DropDownTextField extends StatefulWidget {
 
   ///initial value ,if it is null or not exist in dropDownList then it will not display value.
   final dynamic initialValue;
+  final Widget? suffixIcons;
 
   ///dropDownList,List of dropdown values
   ///List<DropDownValueModel>
@@ -595,45 +598,51 @@ class _DropDownTextFieldState extends State<DropDownTextField>
                 widget.validator != null ? widget.validator!(value) : null,
             decoration: widget.textFieldDecoration != null
                 ? widget.textFieldDecoration!.copyWith(
-                    suffixIcon: (_cnt.text.isEmpty || !widget.clearOption)
-                        ? Icon(
-                            widget.dropDownIconProperty?.icon ??
-                                Icons.arrow_drop_down_outlined,
-                            size: widget.dropDownIconProperty?.size,
-                            color: widget.dropDownIconProperty?.color,
-                          )
-                        : widget.clearOption
-                            ? InkWell(
-                                onTap: clearFun,
-                                child: Icon(
-                                  widget.clearIconProperty?.icon ?? Icons.clear,
-                                  size: widget.clearIconProperty?.size,
-                                  color: widget.clearIconProperty?.color,
-                                ),
+                    suffixIcon: widget.suffixIcons != null
+                        ? widget.suffixIcons
+                        : (_cnt.text.isEmpty || !widget.clearOption)
+                            ? Icon(
+                                widget.dropDownIconProperty?.icon ??
+                                    Icons.arrow_drop_down_outlined,
+                                size: widget.dropDownIconProperty?.size,
+                                color: widget.dropDownIconProperty?.color,
                               )
-                            : null,
+                            : widget.clearOption
+                                ? InkWell(
+                                    onTap: clearFun,
+                                    child: Icon(
+                                      widget.clearIconProperty?.icon ??
+                                          Icons.clear,
+                                      size: widget.clearIconProperty?.size,
+                                      color: widget.clearIconProperty?.color,
+                                    ),
+                                  )
+                                : null,
                   )
                 : InputDecoration(
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     hintText: _hintText,
                     hintStyle: const TextStyle(fontWeight: FontWeight.normal),
-                    suffixIcon: (_cnt.text.isEmpty || !widget.clearOption)
-                        ? Icon(
-                            widget.dropDownIconProperty?.icon ??
-                                Icons.arrow_drop_down_outlined,
-                            size: widget.dropDownIconProperty?.size,
-                            color: widget.dropDownIconProperty?.color,
-                          )
-                        : widget.clearOption
-                            ? InkWell(
-                                onTap: clearFun,
-                                child: Icon(
-                                  widget.clearIconProperty?.icon ?? Icons.clear,
-                                  size: widget.clearIconProperty?.size,
-                                  color: widget.clearIconProperty?.color,
-                                ),
+                    suffixIcon: widget.suffixIcons != null
+                        ? widget.suffixIcons
+                        : (_cnt.text.isEmpty || !widget.clearOption)
+                            ? Icon(
+                                widget.dropDownIconProperty?.icon ??
+                                    Icons.arrow_drop_down_outlined,
+                                size: widget.dropDownIconProperty?.size,
+                                color: widget.dropDownIconProperty?.color,
                               )
-                            : null,
+                            : widget.clearOption
+                                ? InkWell(
+                                    onTap: clearFun,
+                                    child: Icon(
+                                      widget.clearIconProperty?.icon ??
+                                          Icons.clear,
+                                      size: widget.clearIconProperty?.size,
+                                      color: widget.clearIconProperty?.color,
+                                    ),
+                                  )
+                                : null,
                   ),
           ),
         );
@@ -927,7 +936,7 @@ class _DropDownTextFieldState extends State<DropDownTextField>
 }
 
 class DropDownValueModel extends Equatable {
-   String? name;
+  String? name;
   final dynamic value;
 
   ///as of now only added for multiselection dropdown
