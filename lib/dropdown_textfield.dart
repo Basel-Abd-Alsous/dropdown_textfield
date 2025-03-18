@@ -925,14 +925,17 @@ class _DropDownTextFieldState extends State<DropDownTextField>
 }
 
 class DropDownValueModel extends Equatable {
-  final String? name;
+   String? name;
   final dynamic value;
 
   ///as of now only added for multiselection dropdown
   final String? toolTipMsg;
 
-  const DropDownValueModel(
-      {required this.name, required this.value, this.toolTipMsg});
+  DropDownValueModel({
+    this.name,
+    required this.value,
+    this.toolTipMsg,
+  });
 
   factory DropDownValueModel.fromJson(Map<String, dynamic> json) =>
       DropDownValueModel(
