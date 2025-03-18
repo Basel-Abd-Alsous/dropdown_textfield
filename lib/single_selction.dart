@@ -13,6 +13,7 @@ class SingleSelection extends StatefulWidget {
       this.searchTextStyle,
       required this.searchFocusNode,
       required this.mainFocusNode,
+      this.align,
       this.searchKeyboardType,
       required this.searchAutofocus,
       this.searchShowCursor,
@@ -29,6 +30,7 @@ class SingleSelection extends StatefulWidget {
   final List<DropDownValueModel> dropDownList;
   final ValueSetter onChanged;
   final double height;
+  final AlignmentGeometry? align;
   final double listTileHeight;
   final bool enableSearch;
   final double searchHeight;
@@ -153,20 +155,25 @@ class _SingleSelectionState extends State<SingleSelection> {
               padding: EdgeInsets.zero,
               itemCount: newDropDownList.length,
               itemBuilder: (BuildContext context, int index) {
-                return SizedBox(
-                  height: widget.listTileHeight,
-                  child: Padding(
+                return InkWell(
+                  onTap: () {
+                    widget.onChanged(newDropDownList[index]);
+                  },
+                  child: Container(
+                    width: double.infinity,
                     padding: EdgeInsets.only(
-                        right: 10,
                         left: 10,
+                        right: 10,
                         bottom: widget.listPadding.bottom,
                         top: widget.listPadding.top),
-                    child: InkWell(
-                        onTap: () {
-                          widget.onChanged(newDropDownList[index]);
-                        },
+                    child: Align(
+                      alignment: widget.align ?? Alignment.centerRight,
+                      child: FittedBox(
+                        fit: BoxFit.fitHeight,
                         child: Text(newDropDownList[index].name,
-                            style: widget.listTextStyle)),
+                            style: widget.listTextStyle),
+                      ),
+                    ),
                   ),
                 );
               },

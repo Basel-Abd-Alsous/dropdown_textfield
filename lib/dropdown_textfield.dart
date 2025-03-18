@@ -60,6 +60,7 @@ class DropDownTextField extends StatefulWidget {
       this.textStyle,
       this.onChanged,
       this.validator,
+      this.align,
       this.isEnabled = true,
       this.enableSearch = false,
       this.readOnly = true,
@@ -75,6 +76,7 @@ class DropDownTextField extends StatefulWidget {
       this.searchShowCursor,
       this.searchKeyboardType,
       this.listSpace = 0,
+      this.height,
       this.clearOption = true,
       this.clearIconProperty,
       this.listPadding,
@@ -110,6 +112,7 @@ class DropDownTextField extends StatefulWidget {
       this.padding,
       this.textStyle,
       this.onChanged,
+      this.align,
       this.validator,
       this.isEnabled = true,
       this.dropdownRadius = 12,
@@ -120,6 +123,7 @@ class DropDownTextField extends StatefulWidget {
       this.textFieldFocusNode,
       this.listSpace = 0,
       this.clearOption = true,
+      this.height,
       this.clearIconProperty,
       this.submitButtonColor,
       this.submitButtonText,
@@ -211,6 +215,7 @@ class DropDownTextField extends StatefulWidget {
 
   ///override default search keyboard type,only applicable if enableSearch=true,
   final TextInputType? searchKeyboardType;
+  final double? height;
 
   ///by setting searchAutofocus=true to autofocus search textfield,only applicable if enableSearch=true,
   ///  ///default value is false
@@ -242,6 +247,7 @@ class DropDownTextField extends StatefulWidget {
 
   ///dropdown list item text style
   final TextStyle? listTextStyle;
+  final AlignmentGeometry? align;
 
   final TextInputType? keyboardType;
   final AutovalidateMode? autovalidateMode;
@@ -286,6 +292,7 @@ class _DropDownTextFieldState extends State<DropDownTextField>
   late double _keyboardHeight;
   late TextStyle _listTileTextStyle;
   late ListPadding _listPadding;
+
   late TextDirection _currentDirection;
   GlobalKey overlayKey = GlobalKey();
   @override
@@ -819,7 +826,8 @@ class _DropDownTextFieldState extends State<DropDownTextField>
                         searchTextStyle: widget.searchTextStyle,
                         searchFocusNode: _searchFocusNode,
                         enableSearch: widget.enableSearch,
-                        height: _height,
+                        height: widget.height ?? _height,
+                        align: widget.align,
                         listTileHeight: _listTileHeight,
                         dropDownList: _dropDownList,
                         listTextStyle: _listTileTextStyle,
