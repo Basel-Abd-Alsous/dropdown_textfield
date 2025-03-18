@@ -64,8 +64,9 @@ class _SingleSelectionState extends State<SingleSelection> {
         newDropDownList = List.from(widget.dropDownList);
       } else {
         newDropDownList = widget.dropDownList
-            .where(
-                (item) => item.name.toLowerCase().contains(value.toLowerCase()))
+            .where((item) =>
+                (item.name?.toLowerCase().contains(value.toLowerCase()) ??
+                    false))
             .toList();
       }
     });
@@ -170,7 +171,7 @@ class _SingleSelectionState extends State<SingleSelection> {
                       alignment: widget.align ?? Alignment.centerRight,
                       child: FittedBox(
                         fit: BoxFit.fitHeight,
-                        child: Text(newDropDownList[index].name,
+                        child: Text(newDropDownList[index].name ?? '',
                             style: widget.listTextStyle),
                       ),
                     ),

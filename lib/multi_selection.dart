@@ -69,7 +69,7 @@ class _MultiSelectionState extends State<MultiSelection> {
                               child: Row(
                                 children: [
                                   Expanded(
-                                    child: Text(widget.dropDownList[index].name,
+                                    child: Text(widget.dropDownList[index].name ?? '',
                                         style: widget.listTextStyle),
                                   ),
                                   if (widget.dropDownList[index].toolTipMsg !=

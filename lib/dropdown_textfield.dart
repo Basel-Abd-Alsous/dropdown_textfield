@@ -355,7 +355,7 @@ class _DropDownTextFieldState extends State<DropDownTextField>
       if (widget.isMultiSelection) {
         for (int i = 0; i < widget.initialValue.length; i++) {
           var index = _dropDownList.indexWhere((element) =>
-              element.name.trim() == widget.initialValue[i].trim());
+              element.name?.trim() == widget.initialValue[i].trim());
           if (index != -1) {
             _multiSelectionValue[index] = true;
           }
@@ -370,7 +370,7 @@ class _DropDownTextFieldState extends State<DropDownTextField>
                 : "$count item selected");
       } else {
         var index = _dropDownList.indexWhere(
-            (element) => element.name.trim() == widget.initialValue.trim());
+            (element) => element.name?.trim() == widget.initialValue.trim());
 
         if (index != -1) {
           _cnt.text = widget.initialValue;
@@ -443,7 +443,7 @@ class _DropDownTextFieldState extends State<DropDownTextField>
             }
 
             if (oldWidget?.displayCompleteItem != widget.displayCompleteItem) {
-              List<String> names =
+              List<String?> names =
                   (widget.multiController?.dropDownValueList ?? [])
                       .map((dataModel) => dataModel.name)
                       .toList();
@@ -469,7 +469,7 @@ class _DropDownTextFieldState extends State<DropDownTextField>
       } else {
         if (widget.singleController != null) {
           if (widget.singleController!.dropDownValue != null) {
-            _cnt.text = widget.singleController!.dropDownValue!.name;
+            _cnt.text = widget.singleController!.dropDownValue!.name ?? '';
           } else {
             _cnt.clear();
           }
@@ -925,7 +925,7 @@ class _DropDownTextFieldState extends State<DropDownTextField>
 }
 
 class DropDownValueModel extends Equatable {
-  final String name;
+  final String? name;
   final dynamic value;
 
   ///as of now only added for multiselection dropdown
@@ -947,7 +947,7 @@ class DropDownValueModel extends Equatable {
         "toolTipMsg": toolTipMsg,
       };
   @override
-  List<Object> get props => [name, value];
+  List<Object> get props => [name ?? '', value];
 
   @override
   bool operator ==(Object other) =>
