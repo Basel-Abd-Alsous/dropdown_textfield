@@ -100,7 +100,7 @@ class _TestPageState extends State<TestPage> {
                     }
                   },
                   dropDownItemCount: 6,
-                  dropDownList: const [
+                  dropDownList: [
                     DropDownValueModel(name: 'name1', value: "value1"),
                     DropDownValueModel(
                         name: 'name2',
@@ -139,7 +139,7 @@ class _TestPageState extends State<TestPage> {
                   searchShowCursor: false,
                   enableSearch: true,
                   searchKeyboardType: TextInputType.number,
-                  dropDownList: const [
+                  dropDownList: [
                     DropDownValueModel(name: 'name1', value: "value1"),
                     DropDownValueModel(
                         name: 'name2',
@@ -175,7 +175,7 @@ class _TestPageState extends State<TestPage> {
                   // displayCompleteItem: true,
                   checkBoxProperty: CheckBoxProperty(
                       fillColor: MaterialStateProperty.all<Color>(Colors.red)),
-                  dropDownList: const [
+                  dropDownList: [
                     DropDownValueModel(name: 'name1', value: "value1"),
                     DropDownValueModel(
                         name: 'name2',
@@ -219,7 +219,7 @@ class _TestPageState extends State<TestPage> {
                       return null;
                     }
                   },
-                  dropDownList: const [
+                  dropDownList: [
                     DropDownValueModel(name: 'name1', value: "value1"),
                     DropDownValueModel(name: 'name2', value: "value2"),
                     DropDownValueModel(name: 'name3', value: "value3"),
